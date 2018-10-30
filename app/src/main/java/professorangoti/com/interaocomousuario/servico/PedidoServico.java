@@ -9,5 +9,5 @@ import retrofit2.http.GET;
 public interface PedidoServico {
 
     @GET("precos")
-    Call<List<Pedido>> pegaListaDePedidos();
+    Call<List<Pedido>> recuperaListaDePedidos();
 }

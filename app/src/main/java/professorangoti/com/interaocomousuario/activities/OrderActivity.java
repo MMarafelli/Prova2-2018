@@ -110,23 +110,22 @@ public class OrderActivity extends AppCompatActivity implements AdapterView.OnIt
                     .build();
 
             PedidoServico pedidoServico = retrofit.create(PedidoServico.class);
-            Call<List<Pedido>> pedidoResponse = pedidoServico.pegaListaDePedidos();
-
-            pedidoResponse.enqueue(new Callback<List<Pedido>>() {
+            Call<List<Pedido>> pedidoResponseCall = pedidoServico.recuperaListaDePedidos();
+            pedidoResponseCall.enqueue(new Callback<List<Pedido>>() {
                 @Override
                 public void onResponse(Call<List<Pedido>> call, Response<List<Pedido>> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        Pedido pedidoSelecionado = new Pedido();
+                        Pedido pedidoSelecionadoTela = new Pedido();
                         List<Pedido> pedidoList = response.body();
 
                         for (int i = 0; i < pedidoList.size(); i++) {
                             if (pedidoList.get(i).getProduto().equals(pedido)) {
-                                pedidoSelecionado = pedidoList.get(i);
+                                pedidoSelecionadoTela = pedidoList.get(i);
                             }
                         }
 
                         Intent intent = new Intent(OrderActivity.this, PedidoActivity.class);
-                        intent.putExtra("pedido", pedidoSelecionado);
+                        intent.putExtra("pedido", pedidoSelecionadoTela);
                         startActivity(intent);
                     }
                 }
