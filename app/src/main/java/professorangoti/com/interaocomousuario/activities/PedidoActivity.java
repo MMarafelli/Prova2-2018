@@ -27,8 +27,6 @@ public class PedidoActivity extends AppCompatActivity {
         }
 
         if (pedido != null) {
-            Log.d("pedido dep marafelli ", String.valueOf(pedido.getProduto()));
-            Log.d("pedido dep marafelli ", String.valueOf(pedido.getValor()));
             precoPedidoTela.setText(pedido.getValor());
         } else {
             precoPedidoTela.setText("Erro!");
